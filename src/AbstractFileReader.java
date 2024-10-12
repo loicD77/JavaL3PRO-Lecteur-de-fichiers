@@ -1,8 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.IOException;
 
 public abstract class AbstractFileReader {
     protected String filePath;
@@ -34,18 +36,38 @@ public abstract class AbstractFileReader {
         content.forEach(line -> System.out.println(new StringBuilder(line).reverse().toString()));
     }
 
-    // Comparer deux fichiers par leurs contenus
+    // Comparer trois fichiers par leurs contenus
     public boolean compareFiles(String filePath1, String filePath2) {
         try {
-            // Lire les lignes des deux fichiers
             List<String> contentFile1 = Files.readAllLines(Paths.get(filePath1));
             List<String> contentFile2 = Files.readAllLines(Paths.get(filePath2));
 
-            // Comparer le contenu des deux fichiers
             return contentFile1.equals(contentFile2);
         } catch (IOException e) {
             e.printStackTrace();
             return false;  // Retourne false en cas d'erreur de lecture
+        }
+    }
+
+
+    // Méthode pour afficher les différences entre deux fichiers
+    public void showDifferences(String filePath1, String filePath2) {
+        try {
+            List<String> contentFile1 = Files.readAllLines(Paths.get(filePath1));
+            List<String> contentFile2 = Files.readAllLines(Paths.get(filePath2));
+
+            System.out.println("Différences entre les fichiers :");
+            for (int i = 0; i < Math.max(contentFile1.size(), contentFile2.size()); i++) {
+                String line1 = i < contentFile1.size() ? contentFile1.get(i) : "Ligne manquante";
+                String line2 = i < contentFile2.size() ? contentFile2.get(i) : "Ligne manquante";
+                if (!line1.equals(line2)) {
+                    System.out.println("Ligne " + (i + 1) + ":");
+                    System.out.println("  Fichier 1 : " + line1);
+                    System.out.println("  Fichier 2 : " + line2);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

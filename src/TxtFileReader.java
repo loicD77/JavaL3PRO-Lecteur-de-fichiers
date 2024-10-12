@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 public class TxtFileReader extends AbstractFileReader implements FileReaderInterface {
@@ -14,10 +13,10 @@ public class TxtFileReader extends AbstractFileReader implements FileReaderInter
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                content.add(line);
+                content.add(line); // Ajouter chaque ligne au contenu
             }
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier TXT : " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la lecture du fichier TXT : " + e.getMessage());
         }
     }
 
