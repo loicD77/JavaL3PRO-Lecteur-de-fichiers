@@ -1,0 +1,3 @@
+Bonjour, ceci est un fichier de test.
+Il contient plusieurs lignes.
+Voici une troisième ligne.

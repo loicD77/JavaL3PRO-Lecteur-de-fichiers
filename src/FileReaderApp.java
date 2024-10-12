@@ -3,9 +3,12 @@ import java.io.IOException; // Importation de la classe IOException
 public class FileReaderApp {
     public static void main(String[] args) {
         // Mets à jour le chemin de mes fichiers
-        String txtFilePath = "C:\\Java\\Mes projets\\textjava\\myFile.txt";
-        String csvFilePath = "C:\\Java\\Mes projets\\textjava\\myFile.csv";
-        String jsonFilePath = "C:\\Java\\Mes projets\\textjava\\myFile.json";
+        String txtFilePath = "src\\textjava\\myFile.txt";
+        String csvFilePath = "src\\textjava\\myFile.csv";
+        String jsonFilePath = "src\\textjava\\myFile.json";
+
+
+
 
         // Création des lecteurs de fichiers
         TxtFileReader txtFileReader = new TxtFileReader(txtFilePath);
